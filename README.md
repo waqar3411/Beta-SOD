@@ -27,3 +27,9 @@ Object re-identification (Re-ID) methods are highly sensitive to label noise, wh
 ## Ablation Study:
 <img width="600" height="232" alt="image" src="https://github.com/user-attachments/assets/2e0948a2-6a96-4d61-be4d-553ab389c064" />
 
+
+
+## Conclusion:
+We propose a robust object Re-ID approach that integrates a statistical OD framework into training. Our Beta-SOD framework models cosine similarity distributions with a two-component Beta mixture to iteratively filter noisy labels, enabling unsupervised task-specific dataset de-noising. A Siamese network is then trained using combined binary cross-entropy, contrastive, and cosine embedding losses to enhance both classification and feature similarity. Experiments show improved robustness and accuracy across Re-ID benchmarks under varying noise levels. The observed performance gains strongly suggest the effectiveness and generalization capacity of Beta-SOD in real-world noisy label environments.
+We present a novel theoretical result demonstrating that the unique identifiability of two-component Beta mixtures is attainable with probability 1. 
+Based on the strong performance observed in Re-ID tasks, we expect Beta-mixture modeling to be a versatile and effective tool for de-noising cosine similarity scores produced by Siamese architectures, with potential applications extending to face recognition, speaker verification, and sentence embedding models.
