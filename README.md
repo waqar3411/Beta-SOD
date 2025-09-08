@@ -1,5 +1,8 @@
 # Beta-SOD
 
+### Benchmark Datasets for Evaluation:
+The proposed methodology is evaluated on three multi-view Re-ID datasets: [CUHK03](https://www.ee.cuhk.edu.hk/~xgwang/CUHK_identification.html)  and [Market1501](https://github.com/niruhan/market1501)  for person Re-ID, and [VeRI-776](https://github.com/JDAI-CV/VeRidataset) for cars Re-ID.
+
 ## Abstract
 Object re-identification (Re-ID) methods are highly sensitive to label noise, which typically leads to significant performance degradation. We address this challenge by reframing Re-ID as a supervised image similarity task and adopting a Siamese network architecture trained to capture discriminative pairwise relationships. Central to our approach is a novel statistical outlier detection (OD) framework, termed Beta-SOD (Beta mixture Similarity-based Outlier Detection), which models the distribution of cosine similarities between embedding pairs using a two-component Beta distribution mixture model.  We establish a novel identifiability result for mixtures of two Beta distributions, ensuring that our learning task is well-posed. The proposed OD step complements the Re-ID architecture combining binary cross-entropy, contrastive, and cosine embedding losses that jointly optimize feature-level similarity learning. We demonstrate the effectiveness of Beta-SOD in de-noising and Re-ID tasks for person Re-ID, on CUHK03 and Market-1501 datasets, and vehicle Re-ID, on VeRi-776 dataset. Our method shows superior performance compared to the state-of-the-art methods across various noise levels (10-30\%), demonstrating both robustness and broad applicability in noisy Re-ID scenarios.
 
