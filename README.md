@@ -1,4 +1,4 @@
-# Beta-SOD
+# Similarity-based Outlier Detection for Noisy Object Re-Identification Using Beta Mixtures
 
 ### Benchmark Datasets for Evaluation:
 The proposed methodology is evaluated on three multi-view Re-ID datasets: [CUHK03](https://www.ee.cuhk.edu.hk/~xgwang/CUHK_identification.html)  and [Market1501](https://github.com/niruhan/market1501)  for person Re-ID, and [VeRI-776](https://github.com/JDAI-CV/VeRidataset) for cars Re-ID.
