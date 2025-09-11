@@ -25,7 +25,7 @@ from EM_algorithm_whole import *
 def train(base_folder, folder,v, model, epoch,train_dataloader,total_to_remove, 
           removed_count, total_noise,data_csv_test,removed_examples_list,modified_examples,
           ones_counts,run,alpha_c, beta_c, alpha11, beta11,
-          loss_type = 'All', removal_percentage=0.02, removal_flag = False):
+          loss_type = 'All'):
 
 
     print('Loss Type: ', loss_type)
