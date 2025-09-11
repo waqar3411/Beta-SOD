@@ -145,7 +145,7 @@ class CustomDataset(Dataset):
 
 versions = ['Re_Id_train_Beta_SOD']
 
-runs = [1,2,3,4,5]
+runs = [1]
 loss_types = ['All']
 for loss_type in loss_types:
     for run in runs:
@@ -196,13 +196,7 @@ for loss_type in loss_types:
                 base_folder = 'path_to_base_folder' + v + '/' + str(run) + '/' + folder + '/'
                 
                 if not os.path.exists(base_folder):
-                    os.makedirs(base_folder)
-                    # print('here')
-                
-                ablation = base_folder + '/ablation/'
-                if not os.path.exists(ablation):
-                    os.makedirs(ablation)
-                
+                    os.makedirs(base_folder) 
                 
                 
                 file = pd.read_csv('path_to_pairs_csv_file.csv')
@@ -213,9 +207,9 @@ for loss_type in loss_types:
                 label = file['Label'].to_numpy()
                 # print(label)
                 unique, counts = np.unique(label, return_counts = True)
-                print(unique, counts)
+                
                 print('Train pairs size: ',len(file))
-                # print('Test pairs size: ', len(file_test))
+                print('Test pairs size: ', len(file_test))
                 
                 train_dataset = CustomDataset(file, train_images_path, transform=transform_train)
                 
@@ -275,17 +269,3 @@ for loss_type in loss_types:
                                 model, model_path + model_info + mod_type +
                                 f'_Valid_Acc_{valid_acc:0.3f}.pkl')
                             print(f'Model saved to {model_path}')
-                            ablation_data = [epoch,noise_lev,loss_type, valid_acc,mod_type]
-                            
-                            ablation_csv = os.path.isfile(os.path.join(ablation,'ablation.csv'))
-                            # 
-                            with open(os.path.join(ablation,'ablation.csv'), 'a') as csvfile:
-                                writer = csv.writer(csvfile)
-                                
-                                if not ablation_csv:
-                                    writer.writerow(['Epoch','Noise','Loss_type','Valid_acc','Model_Bef/Aft'])
-                                    
-                                writer.writerow(ablation_data)
-
-                        
-                print("...End of Noise Level {noise_lev/100}...\n\n\n")
