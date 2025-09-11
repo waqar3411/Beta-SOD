@@ -225,10 +225,7 @@ for loss_type in loss_types:
                 temp_acc = 0.0
                 epochs = 30
                 
-                mod_init = 'Yes'
-                mod_type = '_before_'
-                
-                
+
                 initial_dataset_size = len(train_dataloader.dataset)  # Assuming train_dataloader.dataset holds the dataset
                 class_distribution = train_dataloader.dataset.get_class_distribution()
 
@@ -241,7 +238,6 @@ for loss_type in loss_types:
                         loss, train_dataloader, removed_count,train_stop, \
                         alpha_c, beta_c, alpha11, \
                         beta11 = train(base_folder, folder,v,model,epoch, train_dataloader,
-                                                                      mod_init,
                                                                       removed_count,
                                                                       (noise_lev / 100),
                                                                       data_csv_test,
