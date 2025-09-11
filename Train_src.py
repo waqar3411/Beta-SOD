@@ -22,7 +22,7 @@ print(device)
 from EM_algorithm import *
 from EM_algorithm_whole import *
 
-def train(base_folder, folder,v, model, epoch,train_dataloader,mod_init,total_to_remove, 
+def train(base_folder, folder,v, model, epoch,train_dataloader,total_to_remove, 
           removed_count, total_noise,data_csv_test,removed_examples_list,modified_examples,
           ones_counts,run,alpha_c, beta_c, alpha11, beta11,
           loss_type = 'All', removal_percentage=0.02, removal_flag = False):
@@ -42,8 +42,7 @@ def train(base_folder, folder,v, model, epoch,train_dataloader,mod_init,total_to
     remaining_examples_0 = []
     similar_distances_whole = []
     zeross = []
-    similar_pairs_FCNN = list()
-    similar_pairs_0_FCNN = list()
+    loss_const = 0.45
     train_stop = False
     
 
@@ -78,32 +77,7 @@ def train(base_folder, folder,v, model, epoch,train_dataloader,mod_init,total_to
         ce_loss = criterion(out, label)
         weighted_loss = ce_loss
 
-        
-        if loss_type == 'All':
-            total_loss = ce_loss + cosine_loss + contrastive_loss.mean()
-            
-        elif loss_type == 'ce':
-            total_loss = ce_loss
-        
-        elif loss_type == 'ce_cos_loss':
-            total_loss = ce_loss + cosine_loss
-        
-        elif loss_type == 'ce_cl':
-            total_loss = ce_loss + contrastive_loss.mean()
-        
-        elif loss_type == 'cos_loss':
-            total_loss = cosine_loss
-        
-        elif loss_type == 'cl':
-            total_loss = contrastive_loss.mean()
-            
-        # elif loss_type == 'cos_cl':
-        #     total_loss = cosine_loss + contrastive_loss.mean()
-        else:
-            print('Invalid_loss')
-            total_loss = 0
-    # else:
-            # weighted_loss = (ce_loss * proba_weights).mean()
+        total_loss = ce_loss + (loss_const * cosine_loss) + ((1 - loss_const) * contrastive_loss.mean())
 
         total_loss.backward()
         optimizer.step()
@@ -113,7 +87,7 @@ def train(base_folder, folder,v, model, epoch,train_dataloader,mod_init,total_to
         weights.append(cosine_loss.item())
 
         # Collect distances for similar pairs (label == 1)
-        if (epoch >= 5) and (epoch % 5 == 0) and mod_init == 'Yes':
+        if (epoch >= 5) and (epoch % 5 == 0):
 
             for i in range(len(label)):
                 global_idx = batch_start + i  # Unique index per image pair
@@ -128,7 +102,7 @@ def train(base_folder, folder,v, model, epoch,train_dataloader,mod_init,total_to
                     similar_distances_0.append((global_idx, pairwisee_loss[i].item(), img1_name[i], img2_name[i], 0, prob_cpu[i][0], 0))
                     
                 
-    if (epoch >= 5) and (epoch % 5 == 0) and len(similar_distances) > 1 and mod_init == 'Yes':
+    if (epoch >= 5) and (epoch % 5 == 0) and len(similar_distances) > 1:
 
         indices, distances, img1_names, img2_names,_,_,_ = zip(*similar_distances)
 
