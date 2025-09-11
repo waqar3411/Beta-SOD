@@ -11,9 +11,6 @@ Object re-identification (Re-ID) methods are highly sensitive to label noise, wh
 ![overall_propose_ABCD](https://github.com/user-attachments/assets/92d724d5-7451-4a86-94db-f7de9e8d3a86)
 
 
-## Visual Results:
-![fp_fn_visuals](https://github.com/user-attachments/assets/2a7f56da-e63d-4707-996e-0d58bdd79cad)
-
 
 ## Comparison with Person Re-Identification State-of-the-art Methods on Random Noise:
 <img width="1257" height="715" alt="image" src="https://github.com/user-attachments/assets/cab54f5a-c2cc-46f0-99bb-ef69eea2ef01" />
